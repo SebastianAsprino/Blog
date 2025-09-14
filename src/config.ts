@@ -17,12 +17,12 @@ export const siteConfig: SiteConfig = {
 	},
 	banner: {
 		enable: true,
-		src: "assets/images/demo-banner.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+		src: "assets/images/125445551_p0.webp", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {
-			enable: false, // Display the credit text of the banner image
-			text: "", // Credit text to be displayed
-			url: "", // (Optional) URL link to the original artwork or artist's page
+			enable: true, // Display the credit text of the banner image
+			text: "行間@お仕事募集中", // Credit text to be displayed
+			url: "https://www.pixiv.net/en/artworks/125445551", // (Optional) URL link to the original artwork or artist's page
 		},
 	},
 	toc: {
@@ -46,33 +46,28 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.About,
 		{
 			name: "GitHub",
-			url: "https://github.com/saicaca/fuwari", // Internal links should not include the base path, as it is automatically added
+			url: "https://github.com/SebastianAsprino", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 	],
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/demo-avatar.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-	name: "Lorem Ipsum",
-	bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+	avatar: "assets/images/avatar.jpeg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	name: "Sebastian Asprino",
+	bio: "ᨒ sudo sysctl status programing ⌂ 100% ░",
 	links: [
 		{
 			name: "Twitter",
-			icon: "fa6-brands:twitter", // Visit https://icones.js.org/ for icon codes
+			icon: "fa6-brands:x-twitter", // Visit https://icones.js.org/ for icon codes
 			// You will need to install the corresponding icon set if it's not already included
 			// `pnpm add @iconify-json/<icon-set-name>`
-			url: "https://twitter.com",
-		},
-		{
-			name: "Steam",
-			icon: "fa6-brands:steam",
-			url: "https://store.steampowered.com",
+			url: "https://x.com/Seb_Asp",
 		},
 		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
-			url: "https://github.com/saicaca/fuwari",
+			url: "https://github.com/SebastianAsprino",
 		},
 	],
 };
