@@ -6,6 +6,9 @@ import { url } from "@utils/url-utils.ts";
 import { onMount } from "svelte";
 import type { SearchResult } from "@/global";
 
+// Fallback delay before initializing search if no Pagefind event arrives.
+const PAGEFIND_INIT_TIMEOUT_MS = 2000;
+
 let keywordDesktop = "";
 let keywordMobile = "";
 let result: SearchResult[] = [];
@@ -93,21 +96,15 @@ onMount(() => {
 			typeof window !== "undefined" &&
 			!!window.pagefind &&
 			typeof window.pagefind.search === "function";
-		console.log("Pagefind status on init:", pagefindLoaded);
 		if (keywordDesktop) search(keywordDesktop, true);
 		if (keywordMobile) search(keywordMobile, false);
 	};
 
 	if (import.meta.env.DEV) {
-		console.log(
-			"Pagefind is not available in development mode. Using mock data.",
-		);
+		// Pagefind is not available in development mode: mock data is used instead.
 		initializeSearch();
 	} else {
-		document.addEventListener("pagefindready", () => {
-			console.log("Pagefind ready event received.");
-			initializeSearch();
-		});
+		document.addEventListener("pagefindready", initializeSearch);
 		document.addEventListener("pagefindloaderror", () => {
 			console.warn(
 				"Pagefind load error event received. Search functionality will be limited.",
@@ -118,10 +115,9 @@ onMount(() => {
 		// Fallback in case events are not caught or pagefind is already loaded by the time this script runs
 		setTimeout(() => {
 			if (!initialized) {
-				console.log("Fallback: Initializing search after timeout.");
 				initializeSearch();
 			}
-		}, 2000); // Adjust timeout as needed
+		}, PAGEFIND_INIT_TIMEOUT_MS);
 	}
 });
 
