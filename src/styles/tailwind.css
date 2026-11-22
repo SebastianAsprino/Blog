@@ -1,0 +1,16 @@
+/*
+ * Global Tailwind entry point (previously injected by @astrojs/tailwind).
+ *
+ * main.css and markdown.css are inlined here by postcss-import so Tailwind
+ * processes them as one file: markdown.css uses @apply with classes defined in
+ * main.css (.link, .btn-regular-dark), which fails at random when the two files
+ * are compiled separately in parallel.
+ *
+ * The components layer is emitted from main.css, after the utilities, on
+ * purpose: that is the cascade the site has always had, so component classes
+ * (.card-base, .btn-*, ...) keep winning over conflicting utilities.
+ */
+@import "tailwindcss/base";
+@import "tailwindcss/utilities";
+@import "./main.css";
+@import "./markdown.css";

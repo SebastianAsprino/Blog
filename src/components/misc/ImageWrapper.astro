@@ -29,9 +29,12 @@ const isPublic = src.startsWith("/");
 // biome-ignore lint/suspicious/noImplicitAnyLet: <check later>
 let img;
 if (isLocal) {
-	const files = import.meta.glob<ImageMetadata>("../../**", {
-		import: "default",
-	});
+	// Only match image files: a bare "../../**" glob also pulls every stylesheet
+	// and script under src/ into the bundle as a side effect.
+	const files = import.meta.glob<ImageMetadata>(
+		"../../**/*.{png,PNG,jpg,JPG,jpeg,JPEG,webp,WEBP,avif,AVIF,gif,GIF,svg,SVG,tiff,TIFF}",
+		{ import: "default" },
+	);
 	let normalizedPath = path
 		.normalize(path.join("../../", basePath, src))
 		.replace(/\\/g, "/");

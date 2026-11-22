@@ -1,4 +1,5 @@
 ---
+import "../styles/tailwind.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
@@ -18,6 +19,16 @@ import {
 import { defaultFavicons } from "../constants/icon";
 import type { Favicon } from "../types/config";
 import { pathsEqual, url } from "../utils/url-utils";
+// Global stylesheets. These used to be pulled in only as a side effect of the
+// import.meta.glob in ImageWrapper.astro; they are imported explicitly so the
+// bundler cannot drop them. main.css and markdown.css are imported from
+// tailwind.css (see the note there).
+import "../styles/markdown-extend.styl";
+import "../styles/scrollbar.css";
+import "../styles/transition.css";
+import "../styles/variables.styl";
+import "../styles/photoswipe.css";
+import "../styles/expressive-code.css";
 import "katex/dist/katex.css";
 
 interface Props {
